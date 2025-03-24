@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moonlit Retreats</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script defer src="script.js"></script>
+</head>
+<body class="bg-white text-black overflow-x-hidden">
+
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 bg-purple-700 bg-opacity-80 p-4 flex justify-between items-center z-50 shadow-lg">
+        <div class="text-2xl font-bold text-white">MOONLIT RETREATS</div>
+        <button id="menu-toggle" class="text-2xl text-white focus:outline-none">&#9776;</button>
+        <nav id="menu" class="hidden absolute top-16 left-0 w-full bg-black bg-opacity-90 text-center py-4">
+            <ul class="space-y-4 text-white">
+                <li><a href="index.html" class="block text-lg hover:text-purple-300">Home</a></li>
+                <li><a href="About.html" class="block text-lg hover:text-purple-300">About Us</a></li>
+                <li><a href="room.html" class="block text-lg hover:text-purple-300">Rooms</a></li>
+                <li><a href="Amenities.html" class="block text-lg hover:text-purple-300">Amenities</a></li>
+                <li><a href="contact.html" class="block text-lg hover:text-purple-300">Contact</a></li>
+                <li><a href="#" class="block text-lg hover:text-purple-300">Packages</a></li>
+                <li><a href="login.html" class="block text-lg hover:text-purple-300">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<!-- Hero Section -->
+<section class="relative min-h-screen">
+    <img src="./images/hotel58.jpg" alt="Hotel View" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white text-center p-6">
+        <h1 class="text-5xl font-bold mb-4 fade-in">Welcome to Moonlit Retreats</h1>
+        <p class="text-lg max-w-xl fade-in">A luxury experience under the moonlit sky, blending comfort with elegance.</p>
+        <a href="room.html" class="mt-6 px-6 py-3 bg-purple-600 rounded-lg text-white text-lg hover:bg-purple-800 transition fade-in">Book Now</a>
+    </div>
+</section>
+
+
+    <!-- About Section -->
+    <section class="text-center py-16 bg-gray-100 rounded-lg shadow-lg mx-6 md:mx-auto max-w-4xl p-8">
+        <h1 class="text-4xl font-bold text-black mb-4 fade-in">Our Commitment to Excellence</h1>
+        <p class="text-lg text-gray-700 leading-relaxed fade-in">
+            At <strong>Moonlit Retreats</strong>, our mission is to provide exceptional travel experiences through curated accommodations that blend luxury with comfort.
+        </p>
+
+        <div class="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-16 mt-8">
+            <div>
+                <h2 class="text-4xl font-extrabold text-purple-700"><span id="percentage">0</span>%</h2>
+                <p class="text-gray-700">We believe in delivering the highest standards of service and hospitality, ensuring every stay is memorable.</p>
+            </div>
+            <div>
+                <h2 class="text-4xl font-extrabold text-purple-700"><span id="years">0</span> years</h2>
+                <p class="text-gray-700">Delivering quality since <span id="foundingYear">2023</span></p>
+            </div>
+            <div>
+                <h2 class="text-4xl font-extrabold text-purple-700"><span id="teamMembers">0</span></h2>
+                <p class="text-gray-700">Dedicated team members making each stay special</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-purple-700 to-purple-900 text-white text-center py-6 mt-16">
+        <p class="text-lg">&copy; 2025 Moonlit Retreats. All rights reserved.</p>
+        <div class="flex justify-center space-x-6 mt-4">
+            <a href="#" class="hover:scale-110 transition"><i class="fab fa-facebook text-2xl"></i></a>
+            <a href="#" class="hover:scale-110 transition"><i class="fab fa-instagram text-2xl"></i></a>
+            <a href="#" class="hover:scale-110 transition"><i class="fab fa-twitter text-2xl"></i></a>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Menu Toggle Function
+            document.getElementById("menu-toggle").addEventListener("click", function() {
+                document.getElementById("menu").classList.toggle("hidden");
+            });
+
+            // Animated Number Function
+            function animateNumber(id, start, end, duration) {
+                let range = end - start;
+                let stepTime = Math.abs(Math.floor(duration / range));
+                let current = start;
+                let increment = end > start ? 1 : -1;
+                let obj = document.getElementById(id);
+
+                let timer = setInterval(function() {
+                    current += increment;
+                    obj.innerText = current;
+                    if (current === end) {
+                        clearInterval(timer);
+                    }
+                }, stepTime);
+            }
+
+            // Animate Numbers
+            animateNumber("percentage", 0, 100, 2000);
+            animateNumber("years", 0, 4, 2000);
+            animateNumber("teamMembers", 0, 350, 2000);
+
+            // Fade-in effect for elements
+            document.querySelectorAll(".fade-in").forEach(el => {
+                el.classList.add("opacity-0", "translate-y-4");
+                setTimeout(() => {
+                    el.classList.add("opacity-100", "translate-y-0", "transition-all", "duration-700");
+                }, 200);
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+/* General Page Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  background: #6a1b9a; /* Solid purple background */
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Simple shadow */
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #6a1b9a; /* Purple text */
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #6a1b9a; /* Purple border */
+  border-radius: 6px;
+  background: #f7f7f7;
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: #9c27b0; /* Lighter purple on focus */
+  background: #fff;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #6a1b9a; /* Purple button */
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #9c27b0; /* Lighter purple on hover */
+}

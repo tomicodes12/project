@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Welcome back, <span id="userName">[User]</span>!</h1>
+      </header>
+
+      <section id="reservationSection">
+        <!-- Reservation details will be dynamically inserted here -->
+      </section>
+
+      <section class="quick-actions">
+        <button id="makeReservation" style="display: none">
+          Make a Reservation
+        </button>
+        <button id="modifyReservation" style="display: none">
+          Modify Reservation
+        </button>
+        <button id="requestServices" style="display: none">
+          Request Services
+        </button>
+        <button id="checkOut" style="display: none">Check Out</button>
+      </section>
+    </div>
+
+    <header>
+      <h1>Welcome back, <span id="userName">[User]</span>!</h1>
+      <button id="logout">Logout</button>
+    </header>
+
+    <!-- Chat Button -->
+    <button id="openChat">Chat with Hotel Staff</button>
+
+    <!-- TTS Button -->
+    <button id="speakReservation" style="display: none">
+      Speak Reservation Details
+    </button>
+
+    <!-- Forgot Password Section -->
+    <p>
+      Forgot your password?
+      <a href="/forgotpassword.html" id="forgotPasswordLink">Reset it here</a>
+    </p>
+
+    <script>
+      document
+        .getElementById("openChat")
+        .addEventListener("click", function () {
+          window.location.href = "chat.html";
+        });
+
+      document
+        .getElementById("speakReservation")
+        .addEventListener("click", function () {
+          const reservationDetails =
+            document.getElementById("reservationSection").innerText;
+          speakText(reservationDetails);
+        });
+
+      function speakText(text) {
+        const speech = new SpeechSynthesisUtterance(text);
+        window.speechSynthesis.speak(speech);
+      }
+    </script>
+
+    <!-- Link to dashboard.js -->
+    <script src="dashboard.js"></script>
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Welcome back, <span id="userName">[User]</span>!</h1>
+      </header>
+
+      <section id="reservationSection">
+        Reservation details will be dynamically inserted here
+      </section>
+
+      <section class="quick-actions">
+        <button id="makeReservation" style="display: none">
+          Make a Reservation
+        </button>
+        <button id="modifyReservation" style="display: none">
+          Modify Reservation
+        </button>
+        <button id="requestServices" style="display: none">
+          Request Services
+        </button>
+        <button id="checkOut" style="display: none">Check Out</button>
+      </section>
+    </div>
+    <header>
+      <h1>Welcome back, <span id="userName">[User]</span>!</h1>
+      <button id="logout">Logout</button>
+    </header>
+
+    Chat Button
+    <button id="openChat">Chat with Hotel Staff</button>
+
+    <script>
+      document
+        .getElementById("openChat")
+        .addEventListener("click", function () {
+          window.location.href = "chat.html";
+        });
+    </script>
+
+    Link to dashboard.js
+    <script src="dashboard.js"></script>
+  </body>
+</html> -->

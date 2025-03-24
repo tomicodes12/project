@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Room</title>
+    <link href="./src/output.css" rel="stylesheet">
+    <script defer src="script.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #1a1a2e; color: white; }
+        .chat-container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: #2b2b4f;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        #chatbox {
+            height: 400px;
+            overflow-y: auto;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            color: black;
+        }
+        .user { color: blue; font-weight: bold; margin-top: 10px; }
+        .bot { color: green; margin-top: 10px; }
+        #userInput {
+            width: calc(100% - 60px);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .send-btn {
+            background: #6a0dad;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .send-btn:hover {
+            background: #530b9c;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden">
+
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 bg-purple-600 bg-opacity-60 p-4 flex justify-between items-center z-50">
+        <div class="text-2xl font-bold">MOONLIT RETREATS</div>
+        <button class="menu-toggle text-2xl">&#9776;</button>
+        <nav class="menu hidden absolute top-16 left-0 w-full bg-black bg-opacity-90 text-center py-4">
+            <ul class="space-y-4">
+                <li><a href="index.html" class="block text-lg">Home</a></li>
+                <li><a href="About.html" class="block text-lg">About Us</a></li>
+                <li><a href="room.html" class="block text-lg">Rooms</a></li>
+                <li><a href="Amenities.html" class="block text-lg">Amenities</a></li>
+                <li><a href="contact.html" class="block text-lg">Contact</a></li>
+                <li><a href="#" class="block text-lg">Packages</a></li>
+                <li><a href="login.html" class="block text-lg">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="relative w-full h-screen overflow-hidden">
+        <div class="slider relative w-full h-screen">
+            <div class="slides flex transition-transform duration-500 ease-in-out" id="slides">
+                <!-- Slide 1 -->
+                <div class="slide relative min-w-full">
+                    <img src="images/mental1.jpg" class="w-full h-screen object-cover" alt="Hotel View">
+                    <div class="absolute bottom-20 left-10 bg-black bg-opacity-60 p-6 rounded max-w-xl text-white">
+                        <h2 class="text-2xl font-bold">Share your worries with the best therapists</h2>
+                        <p>Stay in comfort with our premium rooms and world-class amenities.</p>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide relative min-w-full">
+                    <img src="images/mental4.jpg" class="w-full h-screen object-cover" alt="Luxurious Rooms">
+                    <div class="absolute bottom-20 left-10 bg-black bg-opacity-60 p-6 rounded max-w-xl text-white">
+                        <h2 class="text-2xl font-bold"> Relax and meditate</h2>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- Navigation Buttons -->
+            <button id="prev" class="prev absolute top-1/2 left-5 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 text-2xl rounded-full">&larr;</button>
+            <button id="next" class="next absolute top-1/2 right-5 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 text-2xl rounded-full">&rarr;</button>
+        </div>
+    </section>
+
+
+    <!-- Mental Health Room Info -->
+    <section class="flex flex-col items-center text-center py-16 px-6">
+        <h1 class="text-4xl font-bold text-purple-400">Mental Health Room</h1>
+        <p class="text-lg mt-4 max-w-2xl">
+            Welcome to the Mental Health Room, a safe and peaceful space designed for relaxation and emotional well-being.
+            Our environment is crafted to provide comfort and tranquility, allowing you to unwind and reflect.  
+            Whether you're looking for mindfulness exercises, meditation guides, or someone to chat with,  
+            we are here to support you.
+    </section>
+
+    <!-- Mental Health Chatbot Section -->
+    <section class="flex justify-center items-center min-h-screen">
+        <div class="chat-container">
+            <h2 class="text-center text-3xl font-semibold mb-4">Chat with Our Mental Health Bot</h2>
+            <div id="chatbox"></div>
+            <div class="flex mt-4">
+                <input type="text" id="userInput" placeholder="Type your message...">
+                <button class="send-btn ml-2" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        async function sendMessage() {
+            let inputField = document.getElementById("userInput");
+            let userMessage = inputField.value.trim();
+            if (!userMessage) return;
+
+            // Display user message
+            let chatbox = document.getElementById("chatbox");
+            chatbox.innerHTML += `<div class="user">You: ${userMessage}</div>`;
+
+            // Send to backend
+            let response = await fetch("chatbot.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: userMessage })
+            });
+
+            let data = await response.json();
+
+            // Display chatbot response
+            chatbox.innerHTML += `<div class="bot">Bot: ${data.reply}</div>`;
+            chatbox.scrollTop = chatbox.scrollHeight; // Auto-scroll
+            inputField.value = ""; // Clear input
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-6 mt-16">
+        <p>&copy; 2025 Moonlit Retreats. All rights reserved.</p>
+    </footer>
+</body>
+</html>

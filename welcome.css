@@ -1,0 +1,89 @@
+/* General Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  background: #0d0d2b; /* Dark tech purple */
+  color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+/* Container Styling */
+.container {
+  background: #1a1a40; /* Deep purple tech theme */
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(128, 0, 255, 0.6);
+  width: 90%;
+  max-width: 500px;
+  border: 2px solid #7d00ff;
+}
+
+/* Heading */
+h1 {
+  font-size: 3em;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #bfa3ff; /* Light tech purple */
+}
+
+/* Paragraph */
+p {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+/* Button Container */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Buttons */
+button {
+  background: #7d00ff; /* Bold purple */
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 15px 30px;
+  border: 2px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(128, 0, 255, 0.4);
+}
+
+button:hover {
+  background: white;
+  color: #7d00ff;
+  border-color: #7d00ff;
+  transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 30px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    max-width: 90%;
+  }
+
+  button {
+    font-size: 1em;
+    padding: 12px 25px;
+  }
+}

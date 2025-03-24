@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirm Reservation</title>
+    <link rel="stylesheet" href="reservation.css" />
+  </head>
+  <body>
+    <h1>Confirm Your Reservation</h1>
+
+    <p>Room Type: <span id="roomType"></span></p>
+    <p>Price per Night: $<span id="roomPrice"></span></p>
+    <p>Available Spaces: <span id="roomCapacity"></span></p>
+    <p>Total Price: $<span id="totalPrice"></span></p>
+    <p>Check-in Date: <span id="checkInDate"></span></p>
+    <p>Check-out Date: <span id="checkOutDate"></span></p>
+
+    <button onclick="confirmReservation()">Confirm Reservation</button>
+
+    <!-- Placeholder for dynamically loaded payment page -->
+    <div id="paymentSection"></div>
+
+    <script src="/reservation.js"></script>
+  </body>
+</html>
