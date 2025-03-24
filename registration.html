@@ -70,6 +70,13 @@
         }
 
         // Simulated backend call (replace with actual AJAX request)
+        const registrationSuccessful = true;
+
+        if (registrationSuccessful) {
+          window.location.href = "/confirm-email.html";
+        } else {
+          alert("Registration failed, please try again.");
+        }
       });
 
       const isVisuallyImpaired = localStorage.getItem("isVisuallyImpaired") === "true";
