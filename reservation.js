@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   try {
-    const response = await fetch(`https://localhost:7261/api/Room/${roomId}`);
+    const response = await fetch(`https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/Room/${roomId}`);
     if (!response.ok) throw new Error("Failed to fetch room details");
 
     const room = await response.json();

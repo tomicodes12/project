@@ -14,7 +14,7 @@ function speak(text) {
 
 async function fetchAvailableRooms() {
   try {
-    const response = await fetch("https://localhost:7261/api/Room/available");
+    const response = await fetch("https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/Room/available");
     if (!response.ok) throw new Error("Failed to fetch rooms");
 
     const rooms = await response.json();

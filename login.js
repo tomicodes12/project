@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       const response = await fetch(
-        "https://localhost:7261/api/UserLogin/login",
+        "https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/UserLogin/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

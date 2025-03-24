@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   try {
     // Fetch transaction verification details
     const response = await fetch(
-      `https://localhost:7261/api/Payment/verify?trxref=${encodeURIComponent(
+      `https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/Payment/verify?trxref=${encodeURIComponent(
         reference
       )}&reference=${encodeURIComponent(reference)}`,
       {

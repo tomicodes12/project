@@ -42,7 +42,7 @@ document
 
     try {
       const response = await fetch(
-        "https://localhost:7261/api/UserReg/Register",
+        "https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/UserReg/Register",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
