@@ -4,44 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello, Kindly Register</title>
-    <link rel="stylesheet" href="registration.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <h1>Application Form</h1>
+  <body class="flex items-center justify-center min-h-screen bg-purple-100">
+    <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
+      <h1 class="mb-6 text-2xl font-semibold text-center bg-color-purple">Application Form</h1>
+      
+      <form action="AddUser" method="post" id="applyForm" class="space-y-4">
+        <div>
+          <label for="FirstName" class="block font-medium">First Name</label>
+          <input type="text" id="FirstName" name="FirstName" required class="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300" />
+        </div>
 
-    <form action="AddUser" method="post" id="applyForm">
-      <label for="FirstName">FirstName</label>
-      <input type="text" id="FirstName" name="FirstName" required /><br /><br />
+        <div>
+          <label for="LastName" class="block font-medium">Last Name</label>
+          <input type="text" id="LastName" name="LastName" required class="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300" />
+        </div>
 
-      <label for="LastName">LastName</label>
-      <input type="text" id="LastName" name="LastName" required /><br /><br />
+        <div>
+          <label for="UserName" class="block font-medium">User Name</label>
+          <input type="text" id="UserName" name="UserName" required class="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300" />
+        </div>
 
-      <label for="UserName">UserName</label>
-      <input type="text" id="UserName" name="UserName" required /><br /><br />
+        <div>
+          <label for="Email" class="block font-medium">Email</label>
+          <input type="email" id="Email" name="Email" required class="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300" />
+        </div>
 
-      <label for="Email">Email</label>
-      <input type="email" id="Email" name="Email" required /><br /><br />
+        <div>
+          <label for="Password" class="block font-medium">Password</label>
+          <input type="password" id="Password" name="Password" required class="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300" />
+        </div>
 
-      <label for="Password">Password</label>
-      <input
-        type="password"
-        id="Password"
-        name="Password"
-        required
-      /><br /><br />
+        <div>
+          <label for="PhoneNumber" class="block font-medium">Phone Number</label>
+          <input type="tel" id="PhoneNumber" name="PhoneNumber" required class="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300" />
+        </div>
 
-      <label for="PhoneNumber">PhoneNumber</label>
-      <input
-        type="tel"
-        id="PhoneNumber"
-        name="PhoneNumber"
-        required
-      /><br /><br />
-
-      <button id="submit" type="submit">Apply</button>
-    </form>
-
-    <script src="/registration.js"></script>
+        <button id="submit" type="submit" class="w-full py-2 text-white bg-purple-500 rounded-md hover:bg-blue-600">Apply</button>
+      </form>
+    </div>
 
     <script>
       document.querySelector("form").addEventListener("submit", function (event) {
