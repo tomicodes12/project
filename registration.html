@@ -1,53 +1,102 @@
-<script>
-  document.querySelector("form").addEventListener("submit", async function (event) {
-    event.preventDefault();
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello, Kindly Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="flex items-center justify-center min-h-screen bg-purple-100">
+    <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
+      <h1 class="mb-6 text-2xl font-semibold text-center ">Application Form</h1>
+      
+      <form action="AddUser" method="post" id="applyForm" class="space-y-4">
+        <div>
+          <label for="FirstName" class="block font-medium">First Name</label>
+          <input type="text" id="FirstName" name="FirstName" required class="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300" />
+        </div>
 
-    const formData = new FormData(this);
-    const data = {};
-    formData.forEach((value, key) => {
-      data[key] = value.trim();
-    });
+        <div>
+          <label for="LastName" class="block font-medium">Last Name</label>
+          <input type="text" id="LastName" name="LastName" required class="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300" />
+        </div>
 
-    // Input validation
-    const namePattern = /^[a-zA-Z]{2,}$/;
-    const phonePattern = /^\d{10,15}$/;
+        <div>
+          <label for="UserName" class="block font-medium">User Name</label>
+          <input type="text" id="UserName" name="UserName" required class="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300" />
+        </div>
 
-    if (!namePattern.test(data.FirstName) || !namePattern.test(data.LastName)) {
-      alert("First and Last Name must contain only letters and be at least 2 characters long.");
-      return;
-    }
+        <div>
+          <label for="Email" class="block font-medium">Email</label>
+          <input type="email" id="Email" name="Email" required class="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300" />
+        </div>
 
-    if (!phonePattern.test(data.PhoneNumber)) {
-      alert("Phone number must be between 10-15 digits.");
-      return;
-    }
+        <div>
+          <label for="Password" class="block font-medium">Password</label>
+          <input type="password" id="Password" name="Password" required class="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300" />
+        </div>
 
-    try {
-      // Send registration data to the backend API
-      const response = await fetch("https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/UserReg/Register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+        <div>
+          <label for="PhoneNumber" class="block font-medium">Phone Number</label>
+          <input type="tel" id="PhoneNumber" name="PhoneNumber" required class="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300" />
+        </div>
+
+        <button id="submit" type="submit" class="w-full py-2 text-white bg-purple-500 rounded-md hover:bg-blue-600">Apply</button>
+      </form>
+    </div>
+
+    <script>
+      document.querySelector("form").addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+        const data = {};
+        formData.forEach((value, key) => {
+          data[key] = value.trim();
+        });
+
+        // Input validation
+        const namePattern = /^[a-zA-Z]{2,}$/;
+        const phonePattern = /^\d{10,15}$/;
+
+        if (!namePattern.test(data.FirstName) || !namePattern.test(data.LastName)) {
+          alert("First and Last Name must contain only letters and be at least 2 characters long.");
+          return;
+        }
+
+        if (!phonePattern.test(data.PhoneNumber)) {
+          alert("Phone number must be between 10-15 digits.");
+          return;
+        }
+
+        try {
+          // Send registration data to the backend API
+          const response = await fetch("https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/UserReg/Register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            alert("Registration successful! A confirmation email has been sent.");
+            window.location.href = "/confirm-email.html";
+          } else {
+            alert(result.message || "Registration failed, please try again.");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("Something went wrong. Please try again later.");
+        }
       });
 
-      const result = await response.json();
-
-      if (response.ok) {
-        alert("Registration successful! A confirmation email has been sent.");
-        window.location.href = "/confirm-email.html";
-      } else {
-        alert(result.message || "Registration failed, please try again.");
+      const isVisuallyImpaired = localStorage.getItem("isVisuallyImpaired") === "true";
+      if (isVisuallyImpaired) {
+        document.body.classList.add("tts-enabled");
       }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Something went wrong. Please try again later.");
-    }
-  });
-
-  const isVisuallyImpaired = localStorage.getItem("isVisuallyImpaired") === "true";
-  if (isVisuallyImpaired) {
-    document.body.classList.add("tts-enabled");
-  }
-</script>
+    </script>
+  </body>
+</html>
