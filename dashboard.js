@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Fetch user profile (to get username)
     const userResponse = await fetch(
-      `https://localhost:7261/api/UserProfile/${userId}`,
+      `https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/UserProfile/${userId}`,
       {
         headers: { Authorization: `Bearer ${token}` },
         // headers: { Authorization: `Bearer ${userId}` },
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Fetch user reservations
     const reservationResponse = await fetch(
-      "https://localhost:7261/api/reservations/my",
+      "https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/reservations/my",
       {
         headers: { Authorization: `Bearer ${token}` },
       }
