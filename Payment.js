@@ -92,7 +92,7 @@ async function InitializePayment(Name, Email, Amount) {
   };
 
   try {
-    const response = await fetch("https://localhost:7261/api/Payment/initialize", {
+    const response = await fetch("https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/Payment/initialize", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
