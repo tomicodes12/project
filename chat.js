@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     try {
       console.log("📤 Sending message:", JSON.stringify(messageData));
 
-      const response = await fetch("https://localhost:7261/api/chat/send", {
+      const response = await fetch("https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/chat/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
