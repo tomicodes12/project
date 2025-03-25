@@ -1,10 +1,10 @@
 const token = localStorage.getItem("token");
 const userId = localStorage.getItem("userId");
 
-if (!token || !userId) {
-  alert("You must be logged in to access the chat.");
-  window.location.href = "login.html";
-}
+// if (!token || !userId) {
+//   alert("You must be logged in to access the chat.");
+//   window.location.href = "login.html";
+// }
 
 // ✅ Initialize SignalR Connection
 const connection = new signalR.HubConnectionBuilder()
