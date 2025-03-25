@@ -8,7 +8,7 @@ if (!token || !userId) {
 
 // ✅ Initialize SignalR Connection
 const connection = new signalR.HubConnectionBuilder()
-  .withUrl("https://localhost:7261/chatHub", {
+  .withUrl("https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/chatHub", {
     accessTokenFactory: () => token, // ✅ Send token for authentication
   })
   .withAutomaticReconnect()
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   let userName = "User";
   try {
     const userResponse = await fetch(
-      `https://localhost:7261/api/UserProfile/${userId}`,
+      `https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/UserProfile/${userId}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
