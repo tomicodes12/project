@@ -1,31 +1,43 @@
 body {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(to right, #2c2c54, #706fd3);
+  background: linear-gradient(to right, #1c1c3a, #4e54c8);
   color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
+  animation: backgroundFade 6s infinite alternate;
+}
+
+@keyframes backgroundFade {
+  0% { background: linear-gradient(to right, #1c1c3a, #4e54c8); }
+  100% { background: linear-gradient(to right, #3a1c4a, #7562e0); }
 }
 
 .container {
   width: 100%;
   max-width: 600px;
-  background: #1e272e;
+  background: #2c2c54;
   border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 h1 {
-  background: #706fd3;
+  background: linear-gradient(135deg, #7562e0, #4e54c8);
   color: white;
   padding: 20px;
   text-align: center;
-  font-size: 28px;
+  font-size: 32px;
   margin: 0;
 }
 
@@ -40,12 +52,39 @@ label {
   overflow-y: auto;
   padding: 16px;
   background: #485460;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  padding: 10px 14px;
+  margin: 8px 0;
+  border-radius: 12px;
+  max-width: 75%;
+  word-wrap: break-word;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.message.sent {
+  background: #4e54c8;
+  align-self: flex-end;
+}
+
+.message.received {
+  background: #6c757d;
+  align-self: flex-start;
 }
 
 .input-area {
   display: flex;
   padding: 12px;
-  border-top: 2px solid #706fd3;
+  border-top: 2px solid #7562e0;
+  background: #2c2c54;
 }
 
 #message, #displayName {
@@ -56,6 +95,11 @@ label {
   background: #808e9b;
   color: #ffffff;
   outline: none;
+  transition: background 0.3s;
+}
+
+#message:focus, #displayName:focus {
+  background: #9aa5b1;
 }
 
 #sendMessage {
@@ -63,14 +107,15 @@ label {
   padding: 12px 16px;
   border: none;
   border-radius: 8px;
-  background: #706fd3;
+  background: linear-gradient(135deg, #4e54c8, #7562e0);
   color: white;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: transform 0.2s, background 0.3s;
 }
 
 #sendMessage:hover {
-  background: #474787;
+  background: linear-gradient(135deg, #3a1c4a, #474787);
+  transform: scale(1.1);
 }
 
 @media (max-width: 600px) {
@@ -78,6 +123,6 @@ label {
     width: 90%;
   }
   h1 {
-    font-size: 22px;
+    font-size: 24px;
   }
 }
