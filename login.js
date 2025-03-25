@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (token && userId) {
           const reservationsResponse = await fetch(
-            "https://localhost:7261/api/reservations/my",
+            "https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/reservations/my",
             {
               method: "GET",
               headers: { Authorization: `Bearer ${token}` },
