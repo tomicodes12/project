@@ -80,5 +80,5 @@ function confirmReservation() {
   alert("Reservation confirmed! Redirecting to payment...");
   speak("Reservation confirmed! Redirecting to payment page.");
 
-  window.location.href = "payment.html";
+  window.location.href = "Payment.html";
 }
