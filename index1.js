@@ -32,50 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Auto-slide every 5 seconds
     setInterval(nextSlide, 5000);
 
-    // Chatbot Functionality
-    const chatbox = document.getElementById("chatbox");
-    function addMessage(message, sender = "bot") {
-        const msgDiv = document.createElement("div");
-        msgDiv.classList.add("p-2", "rounded", "mt-2");
-        msgDiv.classList.add(sender === "bot" ? "bg-purple-700 text-white" : "bg-gray-700 text-white text-right");
-        msgDiv.textContent = message;
-        chatbox.appendChild(msgDiv);
-        chatbox.scrollTop = chatbox.scrollHeight;
-        speakText(message); // Speak the chatbot message
-    }
-
-    function handleUserInput(input) {
-        const responses = {
-            "hello": "Hi there! How can I assist you?",
-            "rooms": "We have luxurious rooms available. Would you like to see our offers?",
-            "amenities": "We offer free Wi-Fi, a swimming pool, and a spa.",
-            "booking": "Would you like to check room availability and book a stay?",
-            "bye": "Goodbye! Have a great day!"
-        };
-
-        addMessage(input, "user");
-        setTimeout(() => {
-            const response = responses[input.toLowerCase()] || "I'm sorry, I didn't understand that.";
-            addMessage(response);
-        }, 1000);
-    }
-
-    window.handleKeyPress = function (event) {
-        if (event.key === "Enter") {
-            const inputField = document.getElementById("userInput");
-            if (inputField.value.trim() !== "") {
-                handleUserInput(inputField.value.trim());
-                inputField.value = "";
-            }
-        }
-    };
-
+    // Chatbot Redirect to chat.html
     window.openChatbot = function () {
-        document.getElementById("chatbot").classList.remove("hidden");
-    };
-
-    window.closeChatbot = function () {
-        document.getElementById("chatbot").classList.add("hidden");
+        window.location.href = "chat.html";
     };
 
     // Text-to-Speech Functionality
@@ -89,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Enable Click-to-Speak on the Entire Page
     document.body.addEventListener("click", function (event) {
-        if (event.target.tagName === "P" || event.target.tagName === "H1" || event.target.tagName === "H2" || event.target.tagName === "H3") {
+        if (["P", "H1", "H2", "H3"].includes(event.target.tagName)) {
             speakText(event.target.innerText);
         }
     });
