@@ -116,13 +116,43 @@ async function InitializePayment(Name, Email, Amount) {
   }
 }
 
-// Redirect to dashboard after success page
-document.addEventListener("DOMContentLoaded", () => {
+// Redirect to dashboard after verifying payment on success page
+document.addEventListener("DOMContentLoaded", async () => {
   if (window.location.href.includes("success.html")) {
-    speak("Payment successful. Redirecting to dashboard.");
-    setTimeout(() => {
+    speak("Verifying payment. Please wait.");
+
+    const trxRef = localStorage.getItem("trxRef");
+    if (!trxRef) {
+      speak("Transaction reference missing. Redirecting to dashboard.");
       window.location.href = "dashboard.html";
-    }, 5000);
+      return;
+    }
+
+    try {
+      // Call Verify Endpoint
+      const response = await fetch(`https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/Payment/verify?reference=${trxRef}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ trxRef }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.status === "success") {
+        speak("Payment verified. Redirecting to dashboard.");
+        localStorage.removeItem("trxRef"); // Clean up after verification
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 5000);
+      } else {
+        speak("Payment verification failed. Contact support.");
+        alert("Payment verification failed. Please contact support.");
+      }
+    } catch (error) {
+      speak("An error occurred while verifying payment.");
+      console.error("Payment verification error:", error);
+      alert("Error verifying payment. Please try again.");
+    }
   }
 });
 
@@ -131,8 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // // Check if Text-to-Speech (TTS) is enabled
-// const isVisuallyImpaired =
-//   localStorage.getItem("isVisuallyImpaired") === "true";
+// const isVisuallyImpaired = localStorage.getItem("isVisuallyImpaired") === "true";
 
 // // Speak function if TTS is enabled
 // function speak(text) {
@@ -173,26 +202,18 @@ document.addEventListener("DOMContentLoaded", () => {
 //   amountField.readOnly = true;
 
 //   // Provide spoken feedback when focusing on fields
-//   nameField.addEventListener("focus", function () {
-//     speak("Please enter your full name.");
-//   });
-
-//   emailField.addEventListener("focus", function () {
-//     speak("Please enter your email address.");
-//   });
-
-//   amountField.addEventListener("focus", function () {
-//     speak("This is the total payment amount. You cannot change this.");
-//   });
+//   nameField.addEventListener("focus", () => speak("Please enter your full name."));
+//   emailField.addEventListener("focus", () => speak("Please enter your email address."));
+//   amountField.addEventListener("focus", () => speak("This is the total payment amount. You cannot change this."));
 
 //   document
 //     .getElementById("paymentForm")
 //     .addEventListener("submit", async function (event) {
 //       event.preventDefault();
 
-//       let Name = nameField.value.trim();
-//       let Email = emailField.value.trim();
-//       let Amount = parseFloat(amountField.value || "0");
+//       const Name = nameField.value.trim();
+//       const Email = emailField.value.trim();
+//       const Amount = parseFloat(amountField.value || "0");
 
 //       if (!Name || !Email || Amount <= 0) {
 //         speak("Please fill in all fields correctly.");
@@ -208,11 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //   const reservationData = JSON.parse(localStorage.getItem("reservation"));
 //   const userId = localStorage.getItem("userId");
 
-//   if (
-//     !reservationData ||
-//     !reservationData.roomId ||
-//     !reservationData.totalPrice
-//   ) {
+//   if (!reservationData || !reservationData.roomId || !reservationData.totalPrice) {
 //     speak("Reservation details are missing. Please try again.");
 //     alert("Reservation details are missing. Please try again.");
 //     return;
@@ -237,18 +254,17 @@ document.addEventListener("DOMContentLoaded", () => {
 //   };
 
 //   try {
-//     const response = await fetch(
-//       "https://localhost:7261/api/Payment/initialize",
-//       {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify(payload),
-//       }
-//     );
+//     const response = await fetch("https://moonlitretreats-hbfnfdfabcfpb3d7.canadacentral-01.azurewebsites.net/api/Payment/initialize", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify(payload),
+//     });
 
 //     const result = await response.json();
 
 //     if (response.ok && result.paymentUrl) {
+//       // Store transaction reference for verification
+//       localStorage.setItem("trxRef", TrxRef);
 //       speak("Redirecting to payment page.");
 //       window.location.href = result.paymentUrl;
 //     } else {
@@ -261,3 +277,13 @@ document.addEventListener("DOMContentLoaded", () => {
 //     alert("An error occurred. Please try again.");
 //   }
 // }
+
+// // Redirect to dashboard after success page
+// document.addEventListener("DOMContentLoaded", () => {
+//   if (window.location.href.includes("success.html")) {
+//     speak("Payment successful. Redirecting to dashboard.");
+//     setTimeout(() => {
+//       window.location.href = "dashboard.html";
+//     }, 5000);
+//   }
+// });
