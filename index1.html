@@ -213,11 +213,24 @@
 
     <section><!-- Chatbot UI -->
 
-        <div id="chatbox" class="fixed hidden p-4 text-white bg-purple-900 rounded-lg shadow-lg bottom-5 right-5 w-80"
-             onclick="window.location.href='chat.html';">
-    
+        <div id="chatbot" class="fixed hidden p-4 text-white bg-purple-900 rounded-lg shadow-lg bottom-5 right-5 w-80">
+            <div class="flex items-center justify-between">
+
+                <h3 class="text-lg font-bold">Chat with Us</h3>
+
+                <button onclick="closeChatbot()" class="text-xl">&times;</button>
+
+            </div>
+
+            <div id="chatbox" class="p-2 mt-3 overflow-y-auto text-black bg-white rounded h-60"></div>
+
+            <input id="userInput" type="text" class="w-full p-2 mt-3 text-black bg-white border border-gray-600 rounded"
+                placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+
+        </div><!-- Chatbot Button --><button onclick="openChatbot()"
+            class="fixed p-3 text-white bg-purple-600 rounded-full shadow-lg bottom-5 right-5">💬</button>
+
     </section>
-    
     <!-- Footer -->
     <footer class="py-6 text-center text-white bg-gradient-to-r from-purple-700 to-purple-900">
         <p class="text-lg">&copy; 2025 Moonlit Retreats. All rights reserved.</p>

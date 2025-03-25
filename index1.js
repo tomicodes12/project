@@ -33,15 +33,16 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(nextSlide, 5000);
 
     // Chatbot Functionality
-    // Redirect to chat.html when chatbot is clicked
-const chatbox = document.getElementById("chatbox");
-
-
-    document.addEventListener("click", function () {
-        window.location.href = "chat.html";
-    });
-
-    <p>If you are not redirected, <a href="chat.html">click here to go to the chat page</a>.</p>
+    const chatbox = document.getElementById("chatbox");
+    function addMessage(message, sender = "bot") {
+        const msgDiv = document.createElement("div");
+        msgDiv.classList.add("p-2", "rounded", "mt-2");
+        msgDiv.classList.add(sender === "bot" ? "bg-purple-700 text-white" : "bg-gray-700 text-white text-right");
+        msgDiv.textContent = message;
+        chatbox.appendChild(msgDiv);
+        chatbox.scrollTop = chatbox.scrollHeight;
+        speakText(message); // Speak the chatbot message
+    }
 
     function handleUserInput(input) {
         const responses = {
